@@ -16,6 +16,7 @@ import Payment from "./Components/Employee.jsx/Payment";
 import Work from "./Components/Employee.jsx/Work";
 import AllEmployee from "./Components/Admin/AllEmployee";
 import AdminRoute from "./Components/Routes/AdminRoute";
+import DashHome from "./Components/pages/page/Dashboard/DashHome";
 
 
 
@@ -46,6 +47,10 @@ const routes = createBrowserRouter([
     path: "dashboard",
     element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
     children: [
+      {
+        path: "/dashboard",
+        element: <DashHome></DashHome>,
+      },
       // HR
       {
         path: "employee-list",
@@ -77,7 +82,7 @@ const routes = createBrowserRouter([
       //Admin
       {
         path: "allEmployee",
-        element: <AdminRoute><AllEmployee></AllEmployee></AdminRoute> ,
+        element: <AdminRoute><AllEmployee></AllEmployee></AdminRoute>,
 
       },
     ]

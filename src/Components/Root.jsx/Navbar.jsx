@@ -63,7 +63,7 @@ function NavList() {
 const NavbarNew = () => {
 
     const { user, LogOut } = useContext(AuthContext)
-    console.log(user);
+
     const [openNav, setOpenNav] = React.useState(false);
     React.useEffect(() => {
         window.addEventListener(
@@ -100,7 +100,7 @@ const NavbarNew = () => {
     }
     return (
         <div className={`fixed  w-full mx-auto z-20 `}>
-            <Navbar className={`mx-auto max-w-screen-2xl px-4  py-2 ${isSticky ? 'duration-700 shadow-md bg-blue-gray-200' : ' py-7 duration-700'}`}>
+            <Navbar className={`mx-auto max-w-screen-2xl px-4  py-2 ${isSticky ? 'duration-700 shadow-md bg-blue-gray-200' : ' py-5 duration-700'}`}>
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <Typography
                         as="a"
