@@ -11,11 +11,31 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
+import CheckOutForm from "./CheckOutForm";
+import { Elements } from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe('pk_test_51OEyu8Cr8ts1TE5ReninIoq6jtOlwcZnjbCSWs6tiXNNx1XyIQBxhgr58CA3tw7cuSO3vCR5d2MVMM20Hy8wz8yi00FDINzBf6')
+
+
 
 const EmployeeList = () => {
+  
+
+
     const axiosSecure = useAxiosSecure()
     const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(!open);
+    const [modalData, setModalData] = useState([])
+    const [month, setMonth] = useState('')
+    const [year, setYear] = useState('')
+
+console.log(month,year);
+
+    const handleOpen = (value) => {
+        setOpen(!open)
+        setModalData(value);
+    };
+
 
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
@@ -40,8 +60,10 @@ const EmployeeList = () => {
             })
 
     }
+   
 
 
+   
     return (
         <div className="mx-auto py-10 w-full">
             <h2 className="capitalize  text-center pb-5 text-3xl font-bold">Employee List</h2>
@@ -99,34 +121,65 @@ const EmployeeList = () => {
                                         </td>
                                         <td className="px-6 py-4">
                                             {user?.verified ? <div>
-                                                <Button onClick={handleOpen} type="button" variant="outlined" size="sm" color="gray" fullWidth >
+                                                <Button onClick={() => handleOpen(user)} type="button" variant="outlined" size="sm" color="gray" fullWidth >
                                                     pay
                                                 </Button>
 
-                                                <Dialog open={open} animate={{
+                                                <Dialog className="overflow-auto" open={open} animate={{
                                                     mount: { scale: 1, y: 0 },
                                                     unmount: { scale: 0.9, y: -100 },
                                                 }}>
-                                                    <DialogHeader>Its a simple dialog.</DialogHeader>
+                                                    <DialogHeader className="capitalize  justify-center">payment to {modalData?.name}</DialogHeader>
                                                     <DialogBody>
-                                                        The key to more success is to have a lot of pillows. Put it this way,
-                                                        it took me twenty five years to get these plants, twenty five years of
-                                                        blood sweat and tears, and I&apos;m never giving up, I&apos;m just
-                                                        getting started. I&apos;m up to something. Fan luv.
+                                                        <div className="mx-auto">
+                                                            <p className="text-xl text-center">Salary: $ {modalData?.salary}</p>
+
+                                                           
+                                                                <div className="flex mx-auto justify-center m-3 gap-5 pb-3">
+                                                                    <div>
+                                                                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Month</label>
+                                                                        <select onChange={(e)=>setMonth(e.target.value)} name="month" className="bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 w-full p-2.5 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                                                            <option value="">Select Month</option>
+                                                                            <option value="January">January</option>
+                                                                            <option value="February">February</option>
+                                                                            <option value="March">March</option>
+                                                                            <option value="April">April</option>
+                                                                            <option value="May ">May </option>
+                                                                            <option value="June">June</option>
+                                                                            <option value="July">July</option>
+                                                                            <option value="September">September</option>
+                                                                            <option value="October">October</option>
+                                                                            <option value="November">November</option>
+                                                                            <option value="December">December</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div>
+                                                                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
+                                                                        <input onChange={(e)=>setYear(e.target.value)} type="number" name="year" id="photo" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="designation" required />
+                                                                    </div>
+                                                                </div>
+
+                                                                
+                                                                <div className="">
+                                                    
+                                                                    <Elements stripe={stripePromise} >
+                                                                      <CheckOutForm modalData={modalData } month={month} year={year} ></CheckOutForm>
+                                                                    </Elements>
+                                                                </div>
+                                                                <DialogFooter>
+                                                                    <Button
+                                                                        variant="text"
+                                                                        color="red"
+                                                                        onClick={handleOpen}
+                                                                        className="mr-1"
+                                                                    >
+                                                                        <span>Cancel</span>
+                                                                    </Button>
+                                                                </DialogFooter>
+                                                               
+                                                        </div>
                                                     </DialogBody>
-                                                    <DialogFooter>
-                                                        <Button
-                                                            variant="text"
-                                                            color="red"
-                                                            onClick={handleOpen}
-                                                            className="mr-1"
-                                                        >
-                                                            <span>Cancel</span>
-                                                        </Button>
-                                                        <Button variant="gradient" color="green" onClick={handleOpen}>
-                                                            <span>Confirm</span>
-                                                        </Button>
-                                                    </DialogFooter>
+
                                                 </Dialog>
 
 
@@ -140,7 +193,7 @@ const EmployeeList = () => {
 
                                         </td>
                                         <td className="px-6 py-4">
-                                            <Link to={`/dashboard/details/${user?._id}`}> <Button variant="gradient" size="sm">
+                                            <Link to={`/dashboard/details/${user?.email}`}> <Button variant="gradient" size="sm">
                                                 details
                                             </Button></Link>
                                         </td>

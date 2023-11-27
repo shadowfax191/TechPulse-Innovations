@@ -6,7 +6,7 @@ import SideBar from "./SideBar";
 
 const Dashboard = () => {
     return (
-        <div className="flex gap-2">
+        <div className="flex gap-2 max-w-screen-[2000px] mx-auto">
             <SideBar></SideBar>
             <Outlet></Outlet>
             

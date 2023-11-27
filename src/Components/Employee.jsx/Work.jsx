@@ -30,7 +30,7 @@ const Work = () => {
                 console.log(res.data);
                 refetch()
             })
-
+            e.target.reset();
     }
     return (
         <div className="mx-auto py-10 max-w-3xl">

@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const Details = () => {
     const { id } = useParams()
-
+console.log(id);
     const axiosSecure = useAxiosSecure()
 
     const { data: employeeData = [] } = useQuery({
@@ -14,7 +14,16 @@ const Details = () => {
             return res.data
         },
     })
-    console.log(employeeData);
+
+    const { data: paymentInfo = [], refetch } = useQuery({
+        queryKey: ['paymentInfo'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/payment/${id}`)
+            return res.data
+        },
+    })
+
+    console.log(paymentInfo);
 
     return (
         <div className="mx-auto py-5 max-w-5xl">
