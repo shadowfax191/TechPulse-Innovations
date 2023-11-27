@@ -33,7 +33,7 @@ const Work = () => {
 
     }
     return (
-        <div className="mx-auto py-10 ">
+        <div className="mx-auto py-10 max-w-3xl">
             <h1 className="capitalize  text-center pb-5 text-3xl font-bold ">Work-Sheet</h1>
             <form onSubmit={handleSubmit} className="flex gap-7 mb-10 ">
                 <div>
@@ -66,7 +66,7 @@ const Work = () => {
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg lg:max-h-[50vh] overflow-auto w-full">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
+                        <tr className="text-3xl">
                             <th scope="col" className="px-6 py-3 text-center">
                                 Task
                             </th>
@@ -85,7 +85,7 @@ const Work = () => {
                     <tbody>
                         {
                             works.filter(work => work?.email === user?.email).reverse().map(work=>
-                            < tr key={work?._id} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 text-center">
+                            < tr key={work?._id} className="odd:bg-white text-lg odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 text-center">
                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white capitalize">
                             {work?.task}
                         </th>
