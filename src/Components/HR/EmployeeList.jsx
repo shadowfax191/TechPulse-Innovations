@@ -45,28 +45,28 @@ const EmployeeList = () => {
     return (
         <div className="mx-auto py-10 w-full">
             <h2 className="capitalize  text-center pb-5 text-3xl font-bold">Employee List</h2>
-            <h2 className="capitalize text-gray-700 text-center pb-5">total Employee: {users.length}</h2>
+            <h2 className="capitalize text-gray-700 text-center pb-5">total Employee: {users.filter(user => user.role === 'employee').length}</h2>
             <div>
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg lg:max-h-[70vh] overflow-auto">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th scope="col" className="px-6 py-3">
+                                <th scope="col" className="px-6 py-3 text-center">
                                     Employee name
                                 </th>
                                 <th scope="col" className="px-6 py-3 text-center">
                                     Email
                                 </th>
-                                <th scope="col" className="px-6 py-3">
+                                <th scope="col" className="px-6 py-3 text-center">
                                     Verified
                                 </th>
-                                <th scope="col" className="px-6 py-3">
+                                <th scope="col" className="px-6 py-3 text-center">
                                     Bank Account
                                 </th>
-                                <th scope="col" className="px-6 py-3">
+                                <th scope="col" className="px-6 py-3 text-center">
                                     Salary
                                 </th>
-                                <th scope="col" className="px-6 py-3">
+                                <th scope="col" className="px-6 py-3 text-center">
                                     Action
                                 </th>
                                 <th scope="col" className="px-6 py-3">
