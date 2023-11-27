@@ -60,7 +60,7 @@ const CheckOutForm = ({ modalData, month, year }) => {
                 setRight('Successfully payment done')
                 toast.success('Successfully toasted!')
                 refetch()
-                axiosSecure.post('/payment', { email: modalData.email, month, year, paymentMethod })
+                axiosSecure.post('/payment', { email: modalData?.email, month, year, paymentMethod,salary:modalData?.salary })
                     .then(res => {
                         if (res.data.acknowledged) {
                             console.log(res.data.acknowledged);
