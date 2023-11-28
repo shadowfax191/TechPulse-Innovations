@@ -17,6 +17,7 @@ import Work from "./Components/Employee.jsx/Work";
 import AllEmployee from "./Components/Admin/AllEmployee";
 import AdminRoute from "./Components/Routes/AdminRoute";
 import DashHome from "./Components/pages/page/Dashboard/DashHome";
+import Error from "./Components/Error";
 
 
 
@@ -25,7 +26,7 @@ const routes = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    errorElement: ,
+    errorElement: <Error></Error> ,
     children: [
       {
         path: "/",

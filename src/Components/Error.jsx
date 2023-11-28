@@ -6,7 +6,7 @@ const Error = () => {
             <img className="" src="https://i.ibb.co/b7k3Y8T/error-404-1.png" alt="" />
             <p></p>
             <Link to='/'>
-                <button className=" px-2 bg-blue-gray-600 rounded-lg w-full mt-10">back to home</button>
+                <button className=" py-2 bg-blue-gray-600 rounded-lg w-full mt-10 ">back to home</button>
             </Link>
         </div>
     );
