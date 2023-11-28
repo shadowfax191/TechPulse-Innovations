@@ -29,7 +29,7 @@ function NavList() {
                 color="blue-gray"
                 className="font-medium"
             >
-                <ListItem className="flex items-center gap-2 py-2 pr-4">
+                <ListItem className="flex items-center gap-2 py-2 pr-4 text-base font-medium">
                     Home
                 </ListItem>
             </Typography></NavLink>
@@ -40,7 +40,7 @@ function NavList() {
                 color="blue-gray"
                 className="font-medium"
             >
-                <ListItem className="flex items-center gap-2 py-2 pr-4">
+                <ListItem className="flex items-center gap-2 py-2 pr-4 text-base font-medium">
                     Contact Us
                 </ListItem>
             </Typography>
@@ -51,7 +51,7 @@ function NavList() {
                     color="blue-gray"
                     className="font-medium"
                 >
-                    <ListItem className="flex items-center gap-2 py-2 pr-4">
+                    <ListItem className="flex items-center gap-2 py-2 pr-4 text-base font-medium">
                         Dashboard
                     </ListItem>
                 </Typography></NavLink>
@@ -100,7 +100,7 @@ const NavbarNew = () => {
     }
     return (
         <div className={`fixed  w-full mx-auto z-20 `}>
-            <Navbar className={`mx-auto max-w-screen-2xl px-4  py-2 ${isSticky ? 'duration-700 shadow-md bg-blue-gray-200' : ' py-5 duration-700'}`}>
+            <Navbar className={`mx-auto max-w-screen-2xl px-4  py-2 ${isSticky ? 'duration-700 shadow-md bg-blue-gray-200 border-blue-gray-200' : ' bg-transparent border-transparent md:py-5 duration-700'}`}>
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <Typography
                         as="a"
