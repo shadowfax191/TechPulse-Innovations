@@ -48,7 +48,7 @@ const Slider = () => {
 
             <div className="mx-auto text-center text-black justify-center mt-20 max-w-3xl  bg-transparent relative z-10 ">
               <p className="font-bold text-5xl uppercase">About TechPulse Innovations</p>
-              <p className="text-2xl my-8 leading-none">At TechPulse Innovations, we don't just follow trends; we set them. Our passion for technology and innovation drives us to create solutions that redefine the digital landscape. Here's a glimpse into what makes us a cutting-edge force in the tech industry.</p>
+              {/* <p className="text-2xl my-8 leading-none">At TechPulse Innovations, we don't just follow trends; we set them. Our passion for technology and innovation drives us to create solutions that redefine the digital landscape. Here's a glimpse into what makes us a cutting-edge force in the tech industry.</p> */}
             </div>
           </div>
 
