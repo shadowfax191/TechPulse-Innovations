@@ -72,7 +72,7 @@ const Slider = () => {
 
             <div className="mx-auto text-center text-black justify-center mt-20 max-w-lg bg-transparent relative z-10 ">
               <p className="text-2xl mb-8 leading-none">Enjoy your stay with TechPulse Innovations, where every moment is a celebration of technology, creativity, and boundless innovation.</p>
-              {/* <a href="#" className="bg-purple-800 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Get Started</a> */}
+              <a href="#" className="bg-purple-800 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Get Started</a>
             </div>
           </div>
         </SwiperSlide>
