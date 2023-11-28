@@ -7,7 +7,7 @@ const DashHome = () => {
               
                 <div className=" text-center text-neutral-content flex justify-center items-center h-screen">
                     <div className="">
-                        <h1 className="mb-5 text-7xl font-bold">Welcome To Dashboard</h1>
+                        <h1 className="mb-5 text-7xl font-bold p-2">Welcome To Dashboard</h1>
                        
                     </div>
                 </div>
