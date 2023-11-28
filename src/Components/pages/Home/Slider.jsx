@@ -48,7 +48,7 @@ const Slider = () => {
 
             <div className="mx-auto text-center text-black justify-center mt-20 max-w-3xl  bg-transparent relative z-10 ">
               <p className="font-bold text-5xl uppercase">About TechPulse Innovations</p>
-              {/* <p className="text-2xl my-8 leading-none">At TechPulse Innovations, we don't just follow trends; we set them. Our passion for technology and innovation drives us to create solutions that redefine the digital landscape. Here's a glimpse into what makes us a cutting-edge force in the tech industry.</p> */}
+              <p className="text-2xl my-8 leading-none">At TechPulse Innovations, we don't just follow trends; we set them. Our passion for technology and innovation drives us to create solutions that redefine the digital landscape. Here's a glimpse into what makes us a cutting-edge force in the tech industry.</p>
             </div>
           </div>
 
@@ -72,7 +72,7 @@ const Slider = () => {
 
             <div className="mx-auto text-center text-black justify-center mt-20 max-w-lg bg-transparent relative z-10 ">
               <p className="text-2xl mb-8 leading-none">Enjoy your stay with TechPulse Innovations, where every moment is a celebration of technology, creativity, and boundless innovation.</p>
-              <a href="#" className="bg-purple-800 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Get Started</a>
+              {/* <a href="#" className="bg-purple-800 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Get Started</a> */}
             </div>
           </div>
         </SwiperSlide>
