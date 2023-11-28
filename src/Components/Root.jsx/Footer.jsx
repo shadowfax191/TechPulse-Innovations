@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 import { Typography } from "@material-tailwind/react";
- 
+
 const LINKS = [
   {
     title: "Product",
@@ -15,16 +15,20 @@ const LINKS = [
     items: ["Blog", "Newsletter", "Events", "Help center"],
   },
 ];
- 
+
 const currentYear = new Date().getFullYear();
- 
+
 export function FooterWithSocialLinks() {
   return (
     <footer className=" w-full">
       <div className="mx-auto max-w-screen-2xl px-4 py-2">
         <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
           <Typography variant="h5" className="mb-6">
-            Material Tailwind
+            <div className="flex items-center gap-2">
+
+              <img className="w-10" src="https://i.ibb.co/cXFfVF8/ux.png" alt="" />
+              TechPulse Innovations
+            </div>
           </Typography>
           <div className="grid grid-cols-3 justify-between gap-4">
             {LINKS.map(({ title, items }) => (

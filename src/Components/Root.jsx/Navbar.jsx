@@ -107,7 +107,11 @@ const NavbarNew = () => {
                         variant="h6"
                         className="mr-4 cursor-pointer py-1.5 lg:ml-2"
                     >
-                        Material Tailwind
+                       <div className="flex items-center gap-2">
+                      
+                        <img className="w-10" src="https://i.ibb.co/cXFfVF8/ux.png" alt="" /> 
+                        TechPulse Innovations
+                       </div>
                     </Typography>
                     <div className="hidden lg:block">
                         <NavList />

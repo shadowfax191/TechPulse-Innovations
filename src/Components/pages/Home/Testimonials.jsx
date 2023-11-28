@@ -28,14 +28,14 @@ const Testimonials = () => {
         <div>
             <h1 className='text-center text-3xl md:text-5xl font-bold my-4 md:my-8'>Testimonials</h1>
             <div>
-                <Swiper
+                <Swiper 
                     slidesPerView={3}
                     spaceBetween={30}
                     pagination={{
                         clickable: true,
                     }}
                     modules={[Pagination]}
-                    className="mySwiper"
+                    className="mySwiper cursor-pointer"
                     breakpoints={{
                         320: { slidesPerView: 1 },
                         768: { slidesPerView: 3 }
@@ -43,7 +43,7 @@ const Testimonials = () => {
                 >
                     {
                         tesData.map((tes, index) =>
-                            <SwiperSlide key={index}><div>
+                            <SwiperSlide key={index}><div >
                                 <section className="bg-white dark:bg-gray-900">
                                     <div className=" px-4 py-8 mx-auto  text-center">
                                         <div className="mr-auto place-self-center lg:col-span-7">
