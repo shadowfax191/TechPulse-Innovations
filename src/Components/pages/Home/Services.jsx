@@ -9,7 +9,7 @@ const Services = () => {
                     <img className="h-60  w-full rounded-lg" src="https://i.ibb.co/bmWtJ4B/9437d7766f7278267511f8a3672cde1aa6349872-1456x816.webp" alt="" />
 
                     <div className="p-5">
-                        <h1  className="text-lg font-bold  pb-3">Software Development</h1>
+                        <h1 className="text-lg font-bold  pb-3">Software Development</h1>
 
                         <ul className="pl-3">
                             <li>- Web Application Development</li>
@@ -23,7 +23,7 @@ const Services = () => {
                     <img className="h-60 w-full rounded-lg" src="https://i.ibb.co/xGT4JFb/course-1663052056.jpg" alt="" />
 
                     <div className="p-3">
-                        <h1  className="text-lg font-bold  pb-3">Web Development</h1>
+                        <h1 className="text-lg font-bold  pb-3">Web Development</h1>
 
                         <ul className="pl-3">
                             <li>- Website Design and Development</li>
@@ -52,3 +52,5 @@ const Services = () => {
 };
 
 export default Services;
+
+
