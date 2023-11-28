@@ -33,17 +33,18 @@ function NavList() {
                     Home
                 </ListItem>
             </Typography></NavLink>
-
-            <Typography
+            <NavLink to='/contact-us'> <Typography
                 as='div'
                 variant="small"
                 color="blue-gray"
                 className="font-medium"
             >
+
                 <ListItem className="flex items-center gap-2 py-2 pr-4 text-base font-medium">
                     Contact Us
                 </ListItem>
-            </Typography>
+            </Typography></NavLink>
+
             <NavLink to='/dashboard'>
                 <Typography
                     as='div'
@@ -93,12 +94,13 @@ const NavbarNew = () => {
     }, []);
 
     const [Dropdown, setDropdown] = useState(false)
-    
+
     const handleLogOut = () => {
         LogOut()
-        
     }
+
     return (
+
         <div className={`fixed  w-full mx-auto z-20 `}>
             <Navbar className={`mx-auto max-w-screen-2xl px-4  py-2 ${isSticky ? 'duration-700 shadow-md bg-blue-gray-200 border-blue-gray-200' : ' bg-transparent border-transparent md:py-5 duration-700'}`}>
                 <div className="flex items-center justify-between text-blue-gray-900">
@@ -107,11 +109,11 @@ const NavbarNew = () => {
                         variant="h6"
                         className="mr-4 cursor-pointer py-1.5 lg:ml-2"
                     >
-                       <div className="flex items-center gap-2">
-                      
-                        <img className="w-10" src="https://i.ibb.co/cXFfVF8/ux.png" alt="" /> 
-                        TechPulse Innovations
-                       </div>
+                        <div className="flex items-center gap-2">
+
+                            <img className="w-10" src="https://i.ibb.co/cXFfVF8/ux.png" alt="" />
+                            TechPulse Innovations
+                        </div>
                     </Typography>
                     <div className="hidden lg:block">
                         <NavList />

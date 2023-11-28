@@ -18,6 +18,7 @@ import AllEmployee from "./Components/Admin/AllEmployee";
 import AdminRoute from "./Components/Routes/AdminRoute";
 import DashHome from "./Components/pages/page/Dashboard/DashHome";
 import Error from "./Components/Error";
+import ContactUs from "./Components/pages/Home/ContactUs";
 
 
 
@@ -31,6 +32,10 @@ const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "contact-us",
+        element:<ContactUs></ContactUs> ,
       },
 
     ]
