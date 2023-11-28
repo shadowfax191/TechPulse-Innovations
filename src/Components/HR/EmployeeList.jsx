@@ -14,22 +14,22 @@ import { Link } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckOutForm from "./CheckOutForm";
 import { Elements } from "@stripe/react-stripe-js";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const stripePromise = loadStripe('pk_test_51OEyu8Cr8ts1TE5ReninIoq6jtOlwcZnjbCSWs6tiXNNx1XyIQBxhgr58CA3tw7cuSO3vCR5d2MVMM20Hy8wz8yi00FDINzBf6')
 
 
 
 const EmployeeList = () => {
-  
-
-
     const axiosSecure = useAxiosSecure()
+    const axiosPublic = useAxiosPublic()
+
     const [open, setOpen] = useState(false);
     const [modalData, setModalData] = useState([])
     const [month, setMonth] = useState('')
     const [year, setYear] = useState('')
 
-console.log(month,year);
+    
 
     const handleOpen = (value) => {
         setOpen(!open)
@@ -45,29 +45,32 @@ console.log(month,year);
         },
     })
 
+    const { data: fires = [] } = useQuery({
+        queryKey: ['newFire'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/fire')
+            return res.data
+        },
+    })
+
+
+
     const handleVerify = (verified, id) => {
 
         const verify = !verified
-        console.log(verify);
 
         axiosSecure.put(`/users/update/${id}`, { verify })
-            .then(res => {
-                console.log(res.data)
-                refetch()
-            })
-            .catch(err => {
-                console.log(err);
-            })
 
+        refetch()
     }
-   
 
 
-   
+
+
     return (
         <div className="mx-auto py-10 w-full">
             <h2 className="capitalize  text-center pb-5 text-3xl font-bold">Employee List</h2>
-            <h2 className="capitalize text-gray-700 text-center pb-5">total Employee: {users.filter(user => user.role === 'employee').length}</h2>
+            <h2 className="capitalize text-gray-700 text-center pb-5">total Employee: {users.filter(user => user?.role === 'employee' && !fires?.find(fire => fire?.email == user?.email))?.length}</h2>
             <div>
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg lg:max-h-[70vh] overflow-auto">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -99,7 +102,7 @@ console.log(month,year);
                         </thead>
                         <tbody>
                             {
-                                users.filter(user => user.role === 'employee').map(user =>
+                                users.filter(user => user?.role === 'employee' && !fires?.find(fire => fire?.email == user?.email)).map(user =>
                                     <tr key={user?._id} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 text-center">
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white capitalize">
                                             {user?.name}
@@ -134,49 +137,49 @@ console.log(month,year);
                                                         <div className="mx-auto">
                                                             <p className="text-xl text-center">Salary: $ {modalData?.salary}</p>
 
-                                                           
-                                                                <div className="flex mx-auto justify-center m-3 gap-5 pb-3">
-                                                                    <div>
-                                                                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Month</label>
-                                                                        <select onChange={(e)=>setMonth(e.target.value)} name="month" className="bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 w-full p-2.5 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                                                                            <option value="">Select Month</option>
-                                                                            <option value="January">January</option>
-                                                                            <option value="February">February</option>
-                                                                            <option value="March">March</option>
-                                                                            <option value="April">April</option>
-                                                                            <option value="May ">May </option>
-                                                                            <option value="June">June</option>
-                                                                            <option value="July">July</option>
-                                                                            <option value="September">September</option>
-                                                                            <option value="October">October</option>
-                                                                            <option value="November">November</option>
-                                                                            <option value="December">December</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div>
-                                                                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
-                                                                        <input onChange={(e)=>setYear(e.target.value)} type="number" name="year" id="photo" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="designation" required />
-                                                                    </div>
-                                                                </div>
 
-                                                                
-                                                                <div className="">
-                                                    
-                                                                    <Elements stripe={stripePromise} >
-                                                                      <CheckOutForm modalData={modalData } month={month} year={year} ></CheckOutForm>
-                                                                    </Elements>
+                                                            <div className="flex mx-auto justify-center m-3 gap-5 pb-3">
+                                                                <div>
+                                                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Month</label>
+                                                                    <select onChange={(e) => setMonth(e.target.value)} name="month" className="bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 w-full p-2.5 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                                                        <option value="">Select Month</option>
+                                                                        <option value="January">January</option>
+                                                                        <option value="February">February</option>
+                                                                        <option value="March">March</option>
+                                                                        <option value="April">April</option>
+                                                                        <option value="May ">May </option>
+                                                                        <option value="June">June</option>
+                                                                        <option value="July">July</option>
+                                                                        <option value="September">September</option>
+                                                                        <option value="October">October</option>
+                                                                        <option value="November">November</option>
+                                                                        <option value="December">December</option>
+                                                                    </select>
                                                                 </div>
-                                                                <DialogFooter>
-                                                                    <Button
-                                                                        variant="text"
-                                                                        color="red"
-                                                                        onClick={handleOpen}
-                                                                        className="mr-1"
-                                                                    >
-                                                                        <span>Cancel</span>
-                                                                    </Button>
-                                                                </DialogFooter>
-                                                               
+                                                                <div>
+                                                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label>
+                                                                    <input onChange={(e) => setYear(e.target.value)} type="number" name="year" id="photo" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="designation" required />
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div className="">
+
+                                                                <Elements stripe={stripePromise} >
+                                                                    <CheckOutForm modalData={modalData} month={month} year={year} ></CheckOutForm>
+                                                                </Elements>
+                                                            </div>
+                                                            <DialogFooter>
+                                                                <Button
+                                                                    variant="text"
+                                                                    color="red"
+                                                                    onClick={handleOpen}
+                                                                    className="mr-1"
+                                                                >
+                                                                    <span>Cancel</span>
+                                                                </Button>
+                                                            </DialogFooter>
+
                                                         </div>
                                                     </DialogBody>
 

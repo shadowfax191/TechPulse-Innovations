@@ -37,9 +37,7 @@ const Progress = () => {
         refetch()
         return filteredData
     }
-    console.log(employeeName);
     const filteredData = filterData()
-    console.log(filteredData);
 
     return (
         <div className="mx-auto py-10 max-w-3xl">

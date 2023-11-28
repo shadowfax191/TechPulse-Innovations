@@ -8,7 +8,7 @@ const Payment = () => {
 
     const { user } = useContext(AuthContext)
     const axiosSecure = useAxiosSecure()
-    console.log(user.email);
+  
 
     const { data: EmployeePayments = [] } = useQuery({
         queryKey: ['EmployeePayments'],

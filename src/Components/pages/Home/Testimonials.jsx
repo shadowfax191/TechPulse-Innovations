@@ -23,7 +23,6 @@ const Testimonials = () => {
             .then(data => setData(data))
     }, [])
 
-    console.log(tesData);
     return (
         <div>
             <h1 className='text-center text-3xl md:text-5xl font-bold my-4 md:my-8'>Testimonials</h1>

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -7,6 +8,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Link } from 'react-router-dom';
 
 const Slider = () => {
   return (
@@ -35,7 +37,7 @@ const Slider = () => {
               <p className="font-bold text-5xl uppercase">Welcome to</p>
               <p className="text-3xl font-bold">TechPulse Innovations</p>
               <p className="text-2xl my-8 leading-none">TechPulse: Where Ideas Pulse into Innovation</p>
-              <a href="#" className="bg-purple-800 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Contact us</a>
+              <a className="bg-blue-gray-500 py-4 px-8  font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Get Started</a>
             </div>
 
 
@@ -48,7 +50,7 @@ const Slider = () => {
 
             <div className="mx-auto text-center text-black justify-center mt-20 max-w-3xl  bg-transparent relative z-10 ">
               <p className="font-bold text-5xl uppercase">About TechPulse Innovations</p>
-              <p className="text-2xl my-8 leading-none">At TechPulse Innovations, we don't just follow trends; we set them. Our passion for technology and innovation drives us to create solutions that redefine the digital landscape. Here's a glimpse into what makes us a cutting-edge force in the tech industry.</p>
+              <p className="text-xl text-blue-gray-900 my-8 leading-none">At TechPulse Innovations, we don't just follow trends; we set them. Our passion for technology and innovation drives us to create solutions that redefine the digital landscape. Here's a glimpse into what makes us a cutting-edge force in the tech industry.</p>
             </div>
           </div>
 
@@ -59,9 +61,9 @@ const Slider = () => {
             <div className='absolute top-0 left-0 w-full h-full bg-blue-gray-300 opacity-50'></div>
 
             <div className="mx-auto text-center text-black justify-center mt-20 max-w-3xl bg-transparent relative z-10 ">
-            <p className="font-bold text-5xl uppercase">Our Mission</p>
-              <p className="text-2xl my-8 leading-none">TechPulse Innovations is on a mission to transform businesses through technology. We strive to empower organizations with innovative solutions that enhance efficiency, elevate user experiences, and pave the way for sustained success.</p>
-              
+              <p className="font-bold text-5xl uppercase">Our Mission</p>
+              <p className="text-xl text-blue-gray-900 my-8 leading-none">TechPulse Innovations is on a mission to transform businesses through technology. We strive to empower organizations with innovative solutions that enhance efficiency, elevate user experiences, and pave the way for sustained success.</p>
+
             </div>
           </div>
         </SwiperSlide>
@@ -71,9 +73,11 @@ const Slider = () => {
             <div className='absolute top-0 left-0 w-full h-full bg-blue-gray-300 opacity-50'></div>
 
             <div className="mx-auto text-center text-black justify-center mt-20 max-w-lg bg-transparent relative z-10 ">
-              <p className="text-2xl mb-8 leading-none">Enjoy your stay with TechPulse Innovations, where every moment is a celebration of technology, creativity, and boundless innovation.</p>
-              <a href="#" className="bg-purple-800 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Get Started</a>
-            </div>
+              <p className="text-xl text-blue-gray-900 mb-8 leading-none">Enjoy your stay with TechPulse Innovations, where every moment is a celebration of technology, creativity, and boundless innovation.</p>
+              <Link to='contact-us'>
+                <a className="bg-blue-gray-500 py-4 px-8  font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Contact Us</a>
+
+              </Link>            </div>
           </div>
         </SwiperSlide>
 

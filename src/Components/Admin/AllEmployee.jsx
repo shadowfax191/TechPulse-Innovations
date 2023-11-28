@@ -22,23 +22,24 @@ const AllEmployee = () => {
             return res.data
         },
     })
- 
+
     const handleMakeHr = (id) => {
         const HR = 'HR'
         axiosSecure.put(`/makeHr/update/${id}`, { HR })
             .then(res => {
-                if(res.data){
+                if (res.data) {
                     toast.success('Making HR This Employee Done!', {
                         style: {
-                          border: '1px solid #713200',
-                          padding: '16px',
-                          color: '#713200',
-                          
-                        }})
+                            border: '1px solid #713200',
+                            padding: '16px',
+                            color: '#713200',
+
+                        }
+                    })
                 }
                 refetch()
             })
-           
+
     }
 
     const handleFire = (email) => {
@@ -51,31 +52,31 @@ const AllEmployee = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, fire !"
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.post('/fire', { email })
-                .then(res => {
-                    if(res.data){
-                        Swal.fire({
-                            title: "fired!",
-                            text: "Your employee has been fired.",
-                            icon: "success"
-                          });
-                          fetch()
-                    }
-                })
-             
-            }
-          });
+                    .then(res => {
+                        if (res.data) {
+                            Swal.fire({
+                                title: "fired!",
+                                text: "Your employee has been fired.",
+                                icon: "success"
+                            });
+                            fetch()
+                        }
+                    })
 
-       
+            }
+        });
+
+
     }
 
     return (
 
         <div className="mx-auto py-10 w-full">
             <h2 className="capitalize  text-center pb-5 text-3xl font-bold">All Employee List</h2>
-           
+
             <div>
 
 
@@ -86,7 +87,6 @@ const AllEmployee = () => {
                                 <th scope="col" className="px-6 py-3 text-center">
                                     Employee name
                                 </th>
-
                                 <th scope="col" className="px-6 py-3 text-center">
                                     Designation
                                 </th>
@@ -112,20 +112,24 @@ const AllEmployee = () => {
                                         </td>
 
                                         <td className="px-6 py-4 text-gray-900 ">
-                                            {user?.role == 'HR' ?
-                                                <div className="flex items-center gap-2 justify-center">
+                                            {
+                                                fires.find(fire => fire?.email === user?.email) ? 'fired' : <div>
+                                                    {user?.role == 'HR' ?
+                                                        <div className="flex items-center gap-2 justify-center">
+                                                            <img className="w-4 h-4" src="https://i.ibb.co/71whWdt/check.png" alt="" />
+                                                            <p className=" py-4 text-gray-900 ">HR</p>
+                                                        </div>
+                                                        :
+                                                        <Button onClick={() => handleMakeHr(user?._id)} variant="outlined" size="sm" color="gray" fullWidth >
+                                                            make hr
+                                                        </Button>
 
-                                                    <img className="w-4 h-4" src="https://i.ibb.co/71whWdt/check.png" alt="" />
-                                                    <p className=" py-4 text-gray-900 ">HR</p>
+                                                    }
                                                 </div>
-
-                                                :
-                                                <Button onClick={() => handleMakeHr(user?._id)} variant="outlined" size="sm" color="gray" fullWidth >
-                                                    make hr
-                                                </Button>
-
                                             }
+
                                         </td>
+
                                         <td className="px-6 py-4">
                                             {
                                                 fires.find(fire => fire?.email === user?.email) ? 'fired' :

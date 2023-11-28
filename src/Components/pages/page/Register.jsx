@@ -5,6 +5,7 @@ import auth from "../../firebase/firebase";
 import { updateProfile } from "firebase/auth";
 import axios from "axios";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
 const Register = () => {
     const { createUser } = useContext(AuthContext)
@@ -27,47 +28,80 @@ const Register = () => {
         if (role === 'HR') {
             verified = true
         }
-        console.log(image);
+
         const formData = new FormData()
         formData.append('image', image)
-
         const res = await axios.post('https://api.imgbb.com/1/upload?key=8c18d2802c17409cea414bbb6076ba41', formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
         })
-
         const photo = res.data.data.display_url
-        console.log(photo);
 
-        createUser(email, password)
-            .then(() => {
-                const info = {
-                    name,
-                    email,
-                    photo,
-                    role,
-                    designation,
-                    bank,
-                    salary,
-                    verified
-                }
-                console.log(info);
-                axiosPublic.post('/users', info)
-                    .then(res => {
-                        console.log(res.data);
-                    })
-                const user = auth.currentUser
-                if (user) {
-                    updateProfile(user, {
-                        displayName: name,
-                        photoURL: photo,
+        if (/^(?=.*[A-Za-z])(?=.*[A-Z])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/.test(password)) {
+            createUser(email, password)
+                .then((res) => {
 
-                    })
-                }
-                navigate('/')
-            })
-            .catch(err => {
-                console.log(err);
-            })
+                    if (res.user.uid) {
+                       
+                        const info = {
+                            name,
+                            email,
+                            photo,
+                            role,
+                            designation,
+                            bank,
+                            salary,
+                            verified
+                        }
+                       
+                        axiosPublic.post('/users', info)
+                            .then(() => {
+                       
+                                toast.success('Successfully Registration Complete ',
+                                {
+                                    style: {
+                                        borderRadius: '10px',
+                                        background: '#333',
+                                        color: '#fff',
+                                    },
+                                })
+                            })
+                    }
+
+                    const user = auth.currentUser
+                    if (user) {
+                        updateProfile(user, {
+                            displayName: name,
+                            photoURL: photo,
+
+                        })
+                    }
+                    navigate('/')
+                })
+                .catch(err => {
+                    toast.error(err.message,
+                        {
+                            style: {
+                                borderRadius: '10px',
+                                background: '#FF0',
+                                color: '#333',
+                            },
+                        });
+                })
+        }
+
+        else {
+            toast.error('Password should contain 1 upper case,1 special character and at least 6 character',
+                {
+
+                    style: {
+                        borderRadius: '10px',
+                        background: '#FF0',
+                        color: '#333',
+                    },
+                })
+        }
+
+
 
         e.target.reset();
 

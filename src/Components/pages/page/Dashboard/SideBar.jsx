@@ -24,7 +24,9 @@ import { Home, Payment, People, Work } from "@mui/icons-material";
 import useHr from "../../../Hooks/useHr";
 import useEmployee from "../../../Hooks/useEmployee";
 import useAdmin from "../../../Hooks/useAdmin";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 
 
@@ -33,6 +35,29 @@ const SideBar = () => {
     const [isEmployee] = useEmployee()
     const [isAdmin] = useAdmin()
     const [openNav, setOpenNav] = useState(false);
+    const { LogOut } = useContext(AuthContext)
+
+    const handleLogOut = () => {
+        console.log('dddd');
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Log Out!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                LogOut()
+                Swal.fire({
+                    title: "Log Out Complete!",
+
+                    icon: "success"
+                });
+            }
+        });
+    }
 
     return (
         <div className="">
@@ -121,27 +146,27 @@ const SideBar = () => {
                 </List>
 
             </Card>
-           <div className="bg-blue-gray-200">
-           <IconButton
-                variant="text"
-                color="blue-gray"
-                className="lg:hidden"
-                onClick={() => setOpenNav(!openNav)}
-            >
-               
-                {openNav ? (
-                    <XMarkIcon className="h-6 w-6" strokeWidth={2} />
-                ) : (
-                    <div className="">
-                        <Bars4Icon className="h-6 w-6 " strokeWidth={2} />
-                        
-                    </div>
+            <div className="bg-blue-gray-200">
+                <IconButton
+                    variant="text"
+                    color="blue-gray"
+                    className="lg:hidden"
+                    onClick={() => setOpenNav(!openNav)}
+                >
+
+                    {openNav ? (
+                        <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+                    ) : (
+                        <div className="">
+                            <Bars4Icon className="h-6 w-6 " strokeWidth={2} />
+
+                        </div>
 
 
-                )}
-               
-            </IconButton>
-           </div>
+                    )}
+
+                </IconButton>
+            </div>
             <Collapse open={openNav}>
 
                 <Card className="lg:hidden    w-full p-4 shadow-xl shadow-blue-gray-900/5 bg-blue-gray-200 rounded-none ">
@@ -170,7 +195,7 @@ const SideBar = () => {
                                         <InboxIcon className="h-5 w-5" />
                                     </ListItemPrefix>
                                     progress
-                                </ListItem></NavLink>                             
+                                </ListItem></NavLink>
 
                             </div>
                         }
@@ -210,15 +235,18 @@ const SideBar = () => {
                             <ListItemPrefix>
                                 <Home className="h-5 w-5" />
                             </ListItemPrefix>
-                            Home
+                            Homea
                         </ListItem></Link>
 
-                        <ListItem>
+                        <ListItem onClick={(handleLogOut)}>
                             <ListItemPrefix>
                                 <PowerIcon className="h-5 w-5" />
                             </ListItemPrefix>
-                            Log Out
+                           
                         </ListItem>
+
+                          
+
                     </List>
 
                 </Card>

@@ -3,6 +3,7 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import moment from "moment/moment";
 import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 
 const Work = () => {
@@ -18,7 +19,7 @@ const Work = () => {
         },
     })
 
-    console.log(user.uid);
+    
     const handleSubmit = (e) => {
         e.preventDefault()
         const task = e.target.task.value
@@ -27,7 +28,16 @@ const Work = () => {
 
         axiosSecure.post('/work', { task, hour, date, userId: user?.uid, email: user?.email })
             .then(res => {
-                console.log(res.data);
+              if(res){
+                toast.success('Successfully added ',
+                    {
+                        style: {
+                            borderRadius: '10px',
+                            background: '#333',
+                            color: '#fff',
+                        },
+                    })
+              }
                 refetch()
             })
             e.target.reset();

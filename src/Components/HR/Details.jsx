@@ -5,7 +5,6 @@ import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid,  Legend, ResponsiveCo
 const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
 const Details = () => {
     const { id } = useParams()
-    console.log(id);
     const axiosSecure = useAxiosSecure()
 
     const { data: employeeData = [] } = useQuery({

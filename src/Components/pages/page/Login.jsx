@@ -1,27 +1,71 @@
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 
 
 const Login = () => {
-    const navigate =useNavigate()
-    const location=useLocation()
-    const {sigIn}=useContext(AuthContext)
-    
+    const navigate = useNavigate()
+    const location = useLocation()
+    const { sigIn } = useContext(AuthContext)
+    const axiosPublic = useAxiosPublic()
+
+    const { data: fires = [] } = useQuery({
+        queryKey: ['fire'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/fire')
+            return res.data
+        },
+    })
+
+
+
     const handleSubmit = (e) => {
         e.preventDefault()
-       
+
         const password = e.target.password.value
         const email = e.target.email.value
 
+        const employeeFire = fires.find(fire => fire.email == email)
+
+        if (employeeFire) {
+            return toast.error('You fired from this company',
+                {
+                    style: {
+                        borderRadius: '10px',
+                        background: '#FF0',
+                        color: '#333',
+                    },
+                });
+        }
+
         sigIn(email, password)
             .then(res => {
-                console.log(res);
-                navigate(location?.state ? location.state : '/')
+                if (res.user.uid) {
+                    toast.success('Successfully Login Complete ',
+                        {
+                            style: {
+                                borderRadius: '10px',
+                                background: '#333',
+                                color: '#fff',
+                            },
+                        })
+                    navigate(location?.state ? location.state : '/')
+                }
+
             })
             .catch(err => {
-                console.log(err);
+                toast.error(err.message,
+                    {
+                        style: {
+                            borderRadius: '10px',
+                            background: '#FF0',
+                            color: '#333',
+                        },
+                    });
             })
 
 
@@ -30,7 +74,7 @@ const Login = () => {
         <div>
             <section className="bg-gray-50 dark:bg-gray-900">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                    <a  className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+                    <a className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
                         <img className="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="" />
                         Flowbite
                     </a>
