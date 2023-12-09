@@ -1,8 +1,10 @@
-# React + Vite
+live link: https://employee-management-f76c3.firebaseapp.com
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+About this project 
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* This is employee management system Web Application.
+* Here we have 3 types of role: Admin,Employee,Hr. They all have diffrent routes wich can be only access by them.
+* Admin can fire someone and also make some one HR.
+* Employee can put his total working hour date and what they are working on.
+* HR can pay employee and also can monitor employee work.
+  
